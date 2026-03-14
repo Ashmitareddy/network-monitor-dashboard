@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Entry</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="main-box">
+        <h1>New Submission</h1>
+        <form th:action="@{/submit}" th:object="${userEntry}" method="post" id="entryForm" class="grid-form">
+            <div>
+                <label class="fw-800">Roll Number</label>
+                <input type="text" th:field="*{rollNumber}" class="search-box" placeholder="e.g. 123" required>
+            </div>
+            <div>
+                <label class="fw-800">Project Name</label>
+                <input type="text" th:field="*{abstractName}" class="search-box" placeholder="e.g. Neon" required>
+            </div>
+            <div>
+                <label class="fw-800">Frontend IP</label>
+                <input type="text" th:field="*{ipv4Frontend}" class="search-box" placeholder="192.168.1.1" required>
+            </div>
+            <div>
+                <label class="fw-800">Backend IP</label>
+                <input type="text" th:field="*{ipv4Backend}" class="search-box" placeholder="10.0.0.1" required>
+            </div>
+            <div class="full-width">
+                <button type="submit" class="btn" style="width: 100%">Submit Data</button>
+            </div>
+        </form>
+    </div>
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>
