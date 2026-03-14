@@ -1,12 +1,12 @@
-# Stage 1: Build - Uses Maven and JDK 17 to compile your code
-FROM maven:3.8.4-openjdk-17 AS build
+# Stage 1: Build - Using Eclipse Temurin JDK 17
+FROM eclipse-temurin:17-jdk AS build
 WORKDIR /app
 COPY . .
 # This creates the .jar file in the target/ folder
-RUN mvn clean package -DskipTests
+RUN ./mvnw clean package -DskipTests
 
-# Stage 2: Runtime - A smaller image just to run the app
-FROM openjdk:17-jdk-slim
+# Stage 2: Runtime - Using a smaller JRE image
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 # Copies the jar from the build stage to the runtime stage
 COPY --from=build /app/target/*.jar app.jar
